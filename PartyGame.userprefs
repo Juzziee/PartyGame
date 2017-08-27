@@ -1,16 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Platform\Scripts\Player\PlayerList.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Platform\Scripts\Player\Player.cs">
     <Files>
+      <File FileName="Assets\Platform\Scripts\Player\Player.cs" Line="46" Column="12" />
       <File FileName="Assets\Platform\Scripts\Builder\LevelGen.cs" Line="38" Column="122" />
-      <File FileName="Assets\Platform\Scripts\Level\BlockFall.cs" Line="66" Column="1" />
-      <File FileName="Assets\Platform\Scripts\Player\Player.cs" Line="30" Column="35" />
+      <File FileName="Assets\Platform\Scripts\Level\BlockFall.cs" Line="1" Column="1" />
       <File FileName="Assets\Platform\Scripts\Player\NetworkLobbyHook.cs" Line="17" Column="25" />
-      <File FileName="Assets\Platform\Scripts\Level\KillFloor.cs" Line="18" Column="1" />
-      <File FileName="Assets\Lobby\Scripts\Lobby\LobbyPlayer.cs" Line="14" Column="116" />
+      <File FileName="Assets\Platform\Scripts\Level\KillFloor.cs" Line="1" Column="1" />
       <File FileName="Assets\Platform\Scripts\Player\PlayerList.cs" Line="47" Column="1" />
-      <File FileName="Assets\Platform\Scripts\UI\ScoreUI.cs" Line="11" Column="1" />
-      <File FileName="Assets\Platform\Scripts\UI\BuildUI.cs" Line="26" Column="1" />
+      <File FileName="Assets\Platform\Scripts\Manager\NetworkGameManager.cs" Line="19" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

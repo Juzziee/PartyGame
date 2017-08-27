@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(NetworkTransform))]
 [RequireComponent(typeof(Rigidbody))]
@@ -18,18 +19,44 @@ public class Player : NetworkBehaviour {
 	public string playerName;
 	[SyncVar]
 	public Color color;
-	[SyncVar]
+	[SyncVar(hook = "ScoreUpdate")]
 	public int score;
 	[SyncVar]
 	public bool isDead;
 
+	//hard to control WHEN Init is called (networking make order between object spawning non deterministic)
+	//so we call init from multiple location (depending on what between spaceship & manager is created first).
+	protected bool _wasInit = false;
+
+	protected TextMeshProUGUI _scoreText;
+
+	public GameObject scoreGO;
 
 
-	// Use this for initialization
+	void Awake (){
+		NetworkGameManager.sPlayers.Add (this);
+	}
+
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", color);
+
+		if (NetworkGameManager.sInstance != null) {
+			Init ();
+		}
+	}
+
+	void Init (){
+		if (_wasInit) {
+			return;
+		}
+		Debug.Log ("Create score");
+		GameObject _score = Instantiate (scoreGO, new Vector3 (0, 0, 0), Quaternion.identity);
+		_score.transform.SetParent (NetworkGameManager.sInstance.scoreContainer.transform, false);
+		_scoreText = _score.GetComponent<TextMeshProUGUI> ();
+
+		UpdateScoreText ();
 	}
 
 	// Update is called once per frame
@@ -57,6 +84,19 @@ public class Player : NetworkBehaviour {
 			if (blockFallChance >= 90) {
 				block.CmdToggle ();
 			}
+		}
+	}
+
+	void ScoreUpdate(int newValue){
+		score = newValue;
+		UpdateScoreText ();
+	}
+
+	void UpdateScoreText (){
+		Debug.Log ("Called update text");
+		if (_scoreText != null) {
+			_scoreText.text = playerName + ": " + score;
+			_scoreText.color = color;
 		}
 	}
 }
