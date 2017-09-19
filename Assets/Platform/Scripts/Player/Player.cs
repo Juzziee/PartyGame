@@ -38,24 +38,35 @@ public class Player : NetworkBehaviour {
 	}
 
 	void Start () {
-		rb = GetComponent<Rigidbody> ();
+		rb = GetComponent<Rigidbody> (); 
 		Renderer rend = GetComponent<Renderer> ();
 		rend.material.SetColor ("_Color", color);
 
 		if (NetworkGameManager.sInstance != null) {
+			Debug.Log (playerName + " Try Init");
 			Init ();
 		}
 	}
 
-	void Init (){
+	public void Init (){
 		if (_wasInit) {
 			return;
 		}
-		Debug.Log ("Create score");
 		GameObject _score = Instantiate (scoreGO, new Vector3 (0, 0, 0), Quaternion.identity);
 		_score.transform.SetParent (NetworkGameManager.sInstance.scoreContainer.transform, false);
-		_scoreText = _score.GetComponent<TextMeshProUGUI> ();
+		_scoreText = _score.GetComponent<TextMeshProUGUI>();
 
+
+		/** Working
+		GameObject _score = new GameObject (playerName + "score");
+		_score.transform.SetParent (NetworkGameManager.sInstance.scoreContainer.transform, false);
+		_scoreText = _score.AddComponent<Text> ();
+		_scoreText.alignment = TextAnchor.UpperLeft;
+		_scoreText.font = NetworkGameManager.sInstance.uiScoreFont;
+		_scoreText.color = color;
+		*/
+
+		_wasInit = true;
 		UpdateScoreText ();
 	}
 
@@ -93,7 +104,6 @@ public class Player : NetworkBehaviour {
 	}
 
 	void UpdateScoreText (){
-		Debug.Log ("Called update text");
 		if (_scoreText != null) {
 			_scoreText.text = playerName + ": " + score;
 			_scoreText.color = color;

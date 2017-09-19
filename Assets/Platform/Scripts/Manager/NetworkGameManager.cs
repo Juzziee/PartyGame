@@ -11,8 +11,16 @@ public class NetworkGameManager : NetworkBehaviour {
 
 	public GameObject scoreContainer;
 
+	public Font uiScoreFont;
+
 	// Use this for initialization
 	void Awake () {
 		sInstance = this;
+	}
+
+	void Start(){
+		for (int i = 0; i < sPlayers.Count; ++i) {
+			sPlayers [i].Init ();
+		}
 	}
 }
