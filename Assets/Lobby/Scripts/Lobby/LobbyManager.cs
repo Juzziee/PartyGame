@@ -26,10 +26,13 @@ namespace Prototype.NetworkLobby
 
         public RectTransform mainMenuPanel;
         public RectTransform lobbyPanel;
+		public RectTransform lobbyLevel;
 
         public LobbyInfoPanel infoPanel;
         public LobbyCountdownPanel countdownPanel;
         public GameObject addPlayerButton;
+
+		//public LobbyLevelList lobbyLevel;
 
         protected RectTransform currentPanel;
 
@@ -163,6 +166,10 @@ namespace Prototype.NetworkLobby
             backDelegate();
 			topPanel.isInGame = false;
         }
+
+		public void SelectLevel(){
+			StartCoroutine(ServerCountdownCoroutine());
+		}
 
         // ----------------- Server management
 
@@ -346,8 +353,10 @@ namespace Prototype.NetworkLobby
 					allready &= lobbySlots[i].readyToBegin;
 			}
 
-			if(allready)
-				StartCoroutine(ServerCountdownCoroutine());
+			if (allready)
+				lobbyLevel.gameObject.SetActive (true);
+			
+				//StartCoroutine(ServerCountdownCoroutine());
         }
 
         public IEnumerator ServerCountdownCoroutine()
@@ -383,7 +392,7 @@ namespace Prototype.NetworkLobby
                     (lobbySlots[i] as LobbyPlayer).RpcUpdateCountdown(0);
                 }
             }
-
+			lobbyLevel.gameObject.SetActive (false);
             ServerChangeScene(playScene);
         }
 
