@@ -22,9 +22,10 @@ public class LobbyLevelList : NetworkBehaviour {
 		public string desc;
 		public Sprite image;
 	}
-
+		
 	public Levels[] levels;
 
+	[SyncVar]
 	public int levelCounter;
 
 	// Use this for initialization
@@ -41,14 +42,24 @@ public class LobbyLevelList : NetworkBehaviour {
 	
 	public void SelectButton(){
 		Debug.Log (levels[levelCounter].name + " Level Selected");
-		//SetLevel (levels[levelCounter].scene);
+
+		//CmdLevelSetup (levelCounter);
+
 		lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = levels[levelCounter].scene;
 		lobbyManager.GetComponent<NetworkLobbyManager> ().gamePlayerPrefab = levels [levelCounter].playerPrefab;
 
 	}
 
-	public void SetLevel(string selectLevel) {
-		lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = selectLevel;
+	[Command]
+	void CmdLevelSetup (int selectedLevel){
+		RpcLevelSetup (selectedLevel);
+	}
+
+	[ClientRpc]
+	void RpcLevelSetup(int selectedLevel){
+		Debug.Log ("Setting up level on client");
+		lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = levels[selectedLevel].scene;
+		lobbyManager.GetComponent<NetworkLobbyManager> ().gamePlayerPrefab = levels [selectedLevel].playerPrefab;
 	}
 
 	public void NextLevel(){

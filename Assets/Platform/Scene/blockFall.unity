@@ -1070,8 +1070,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c67ddc2f8f6364cb2abee1394ca90e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreContainer: {fileID: 1060436697}
-  uiScoreFont: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  scoreContainer: {fileID: 2127539442}
+  uiScoreFont: {fileID: 12800000, guid: 87c316b602156405d92e616621658222, type: 3}
 --- !u!114 &484332992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3084,11 +3084,6 @@ Transform:
   m_Father: {fileID: 1881600316}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1060436697 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1338917543221672, guid: 1069377e01ad67a4f9752f1a050d279a,
-    type: 2}
-  m_PrefabInternal: {fileID: 2127539441}
 --- !u!224 &1060436698 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224419452822034554, guid: 1069377e01ad67a4f9752f1a050d279a,
@@ -6222,3 +6217,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1069377e01ad67a4f9752f1a050d279a, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2127539442 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1338917543221672, guid: 1069377e01ad67a4f9752f1a050d279a,
+    type: 2}
+  m_PrefabInternal: {fileID: 2127539441}
