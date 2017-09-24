@@ -64,6 +64,7 @@
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerEntry.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyServerList.cs" />
      <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyTopPanel.cs" />
+     <Compile Include="Assets\Lobby\Scripts\Lobby\LobbyUpdateSettings.cs" />
      <Compile Include="Assets\Platform\Scripts\Builder\LevelGen.cs" />
      <Compile Include="Assets\Platform\Scripts\Level\BlockFall.cs" />
      <Compile Include="Assets\Platform\Scripts\Level\KillFloor.cs" />

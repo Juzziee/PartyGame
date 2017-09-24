@@ -43,23 +43,15 @@ public class LobbyLevelList : NetworkBehaviour {
 	public void SelectButton(){
 		Debug.Log (levels[levelCounter].name + " Level Selected");
 
-		//CmdLevelSetup (levelCounter);
+		LevelSetup ();
 
-		lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = levels[levelCounter].scene;
-		lobbyManager.GetComponent<NetworkLobbyManager> ().gamePlayerPrefab = levels [levelCounter].playerPrefab;
+		//lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = levels[levelCounter].scene;
+		//lobbyManager.GetComponent<NetworkLobbyManager> ().gamePlayerPrefab = levels [levelCounter].playerPrefab;
 
 	}
-
-	[Command]
-	void CmdLevelSetup (int selectedLevel){
-		RpcLevelSetup (selectedLevel);
-	}
-
-	[ClientRpc]
-	void RpcLevelSetup(int selectedLevel){
-		Debug.Log ("Setting up level on client");
-		lobbyManager.GetComponent<NetworkLobbyManager> ().playScene = levels[selectedLevel].scene;
-		lobbyManager.GetComponent<NetworkLobbyManager> ().gamePlayerPrefab = levels [selectedLevel].playerPrefab;
+		
+	void LevelSetup (){
+		lobbyManager.GetComponent<LobbyUpdateSettings> ().SetupLevel (levels [levelCounter].scene, levels [levelCounter].playerPrefab);
 	}
 
 	public void NextLevel(){
